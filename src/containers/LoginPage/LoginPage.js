@@ -32,6 +32,7 @@ export const LoginPage = ({
     }
     else {
       alert('Введите правильный логин или пароль!');
+      setPassword('');
       return false
     }
   }

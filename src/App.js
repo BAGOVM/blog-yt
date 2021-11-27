@@ -7,9 +7,6 @@ import {
 } from 'react-router-dom';
 import './App.css';
 import { Footer } from './components/Footer/Footer';
-import { Header } from './components/Header/Header';
-import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
-import { PublicRoute } from './components/PublicRoute/PublicRoute';
 import { BlogPage } from './containers/BlogPage/BlogPage';
 import { LoginPage } from './containers/LoginPage/LoginPage';
 import { NoMatch } from './containers/NoMatch/NoMatch';

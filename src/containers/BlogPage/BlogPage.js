@@ -9,6 +9,7 @@ import { EditPostForm } from './components/EditPostForm';
 import { postsUrl } from '../../shared/projectData';
 import { Header } from '../../components/Header/Header';
 import { Pagination } from 'antd';
+import CoinTable from "./components/CoinTable";
 
 let source;
 
@@ -18,7 +19,6 @@ export const BlogPage = ({ userName, isLoggedIn, setIsLoggedIn }) => {
   const [blogArr, setBlogArr] = useState([]);
   const [isPending, setIsPending] = useState(false);
   const [selectedPost, setSelectedPost] = useState({});
-
   const history = useHistory();
   const location = useLocation();
 
@@ -29,9 +29,9 @@ export const BlogPage = ({ userName, isLoggedIn, setIsLoggedIn }) => {
   const [offset, setOffset] = useState((location?.search.split('=')[1] - 1) * elementsPerPage || 0);
   const pagesCount = Math.ceil(totalElementsCount / elementsPerPage);
 
-  const fetchPosts = () => {
-    source = axios.CancelToken.source();
-    axios
+  const fetchPosts = async() => {
+    source = await axios.CancelToken.source();
+    await axios
       .get(postsUrl, { cancelToken: source.token })
       .then((response) => {
         setBlogArr(response.data);
@@ -43,6 +43,7 @@ export const BlogPage = ({ userName, isLoggedIn, setIsLoggedIn }) => {
         console.log(err);
       });
   };
+
 
   const handlePageClick = (pageNumber) => {
     const offset = (pageNumber - 1) * elementsPerPage;
@@ -191,6 +192,7 @@ export const BlogPage = ({ userName, isLoggedIn, setIsLoggedIn }) => {
               />
             )}
           </div>
+          <CoinTable />
           {isPending && <CircularProgress className='preloader' />}
         </>
       </div>
